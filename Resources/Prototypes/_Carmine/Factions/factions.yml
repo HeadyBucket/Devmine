@@ -1,6 +1,6 @@
 - type: faction
   name: "Hivers"
-  id: Hive
+  id: FactionHive
   descriptionPrefix: |
     Rewrite me sometime.
   buttonColor: DarkSlateBlue
@@ -15,7 +15,7 @@
 
 - type: faction
   name: "Eden"
-  id: Eden
+  id: FactionEden
   descriptionPrefix: |
     Rewrite me sometime.
   buttonColor: "#a46106"
@@ -30,7 +30,7 @@
 
 - type: faction
   name: "Coalition"
-  id: Coalition
+  id: FactionCoalition
   descriptionPrefix: |
     Rewrite me sometime.
   buttonColor: DarkSlateGray
