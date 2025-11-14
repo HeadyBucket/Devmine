@@ -13,6 +13,11 @@
 # /Prototypes/Nyanotrasen/Maps/salvage.yml
 # /Prototypes/DeltaV/Maps/salvage_modified.yml
 # /Prototypes/DeltaV/Maps/salvage.yml
-- Prototypes/DeltaV/Roles/Jobs
-- Prototypes/Roles/Jobs/Security
-- Prototypes/Roles/Jobs/Science
+
+### DELTA V
+
+### BASEGAME / WIZDEN
+
+### HULLROT
+- /Prototypes/_Crescent/Entities/Clothing/NCWL/OuterClothing/armor.yml
+
