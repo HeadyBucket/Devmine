@@ -1,6 +1,8 @@
 using System.Numerics;
 using Content.Shared.CCVar;
 using Content.Shared.Maps;
+using Content.Shared.Tools.Components;
+using Microsoft.VisualBasic;
 using Robust.Client.Graphics;
 using Robust.Shared.Configuration;
 using Robust.Shared.Enums;
@@ -32,7 +34,7 @@ public sealed class AmbientOcclusionOverlay : Overlay
     public AmbientOcclusionOverlay()
     {
         IoCManager.InjectDependencies(this);
-        ZIndex = AfterLightTargetOverlay.ContentZIndex + 1;
+        ZIndex = AfterLightTargetOverlay.ContentZIndex - 1;
     }
 
     protected override void Draw(in OverlayDrawArgs args)
@@ -63,6 +65,7 @@ public sealed class AmbientOcclusionOverlay : Overlay
         var query = _entManager.System<OccluderSystem>();
         var xformSystem = _entManager.System<SharedTransformSystem>();
         var invMatrix = args.Viewport.GetWorldToLocalMatrix();
+
 
         if (_aoTarget?.Texture.Size != target.Size)
         {

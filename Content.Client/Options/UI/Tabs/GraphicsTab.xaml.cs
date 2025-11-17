@@ -74,12 +74,18 @@ namespace Content.Client.Options.UI.Tabs
                 UpdateApplyButton();
             };
 
+            AmbientOcclusionCheckBox.OnToggled += _ =>
+            {
+                UpdateViewportScale();
+                UpdateApplyButton();
+            };
+
             IntegerScalingCheckBox.OnToggled += OnCheckBoxToggled;
             ViewportLowResCheckBox.OnToggled += OnCheckBoxToggled;
             ParallaxLowQualityCheckBox.OnToggled += OnCheckBoxToggled;
             FpsCounterCheckBox.OnToggled += OnCheckBoxToggled;
             MoodVisualEffectsCheckBox.OnToggled += OnCheckBoxToggled;
-            AmbientOcclusion.OnToggled += OnCheckBoxToggled;
+            AmbientOcclusionCheckBox.OnToggled += OnCheckBoxToggled;
             ApplyButton.OnPressed += OnApplyButtonPressed;
             VSyncCheckBox.Pressed = _cfg.GetCVar(CVars.DisplayVSync);
             FullscreenCheckBox.Pressed = ConfigIsFullscreen;
@@ -93,7 +99,7 @@ namespace Content.Client.Options.UI.Tabs
             ParallaxLowQualityCheckBox.Pressed = _cfg.GetCVar(CCVars.ParallaxLowQuality);
             FpsCounterCheckBox.Pressed = _cfg.GetCVar(CCVars.HudFpsCounterVisible);
             MoodVisualEffectsCheckBox.Pressed = _cfg.GetCVar(CCVars.MoodVisualEffects);
-            AmbientOcclusion.Pressed = _cfg.GetCVar(CCVars.AmbientOcclusion);
+            AmbientOcclusionCheckBox.Pressed = _cfg.GetCVar(CCVars.AmbientOcclusion);
             ViewportWidthSlider.Value = _cfg.GetCVar(CCVars.ViewportWidth);
 
             _cfg.OnValueChanged(CCVars.ViewportMinimumWidth, _ => UpdateViewportWidthRange());
@@ -128,7 +134,7 @@ namespace Content.Client.Options.UI.Tabs
             _cfg.SetCVar(CCVars.ParallaxLowQuality, ParallaxLowQualityCheckBox.Pressed);
             _cfg.SetCVar(CCVars.HudFpsCounterVisible, FpsCounterCheckBox.Pressed);
             _cfg.SetCVar(CCVars.MoodVisualEffects, MoodVisualEffectsCheckBox.Pressed);
-            _cfg.SetCVar(CCVars.AmbientOcclusion, AmbientOcclusion.Pressed);
+            _cfg.SetCVar(CCVars.AmbientOcclusion, AmbientOcclusionCheckBox.Pressed);
             _cfg.SetCVar(CCVars.ViewportWidth, (int) ViewportWidthSlider.Value);
 
             _cfg.SaveToFile();
@@ -159,7 +165,7 @@ namespace Content.Client.Options.UI.Tabs
             var isVPResSame = ViewportLowResCheckBox.Pressed == !_cfg.GetCVar(CCVars.ViewportScaleRender);
             var isPLQSame = ParallaxLowQualityCheckBox.Pressed == _cfg.GetCVar(CCVars.ParallaxLowQuality);
             var isFpsCounterVisibleSame = FpsCounterCheckBox.Pressed == _cfg.GetCVar(CCVars.HudFpsCounterVisible);
-            var isAOSame = AmbientOcclusion.Pressed == _cfg.GetCVar(CCVars.AmbientOcclusion);
+            var isAOSame = AmbientOcclusionCheckBox.Pressed == _cfg.GetCVar(CCVars.AmbientOcclusion);
             var isWidthSame = (int) ViewportWidthSlider.Value == _cfg.GetCVar(CCVars.ViewportWidth);
 
             ApplyButton.Disabled = isVSyncSame &&
@@ -173,7 +179,8 @@ namespace Content.Client.Options.UI.Tabs
                                    isVPResSame &&
                                    isPLQSame &&
                                    isFpsCounterVisibleSame &&
-                                   isWidthSame;
+                                   isWidthSame &&
+                                   isAOSame;
         }
 
         private bool ConfigIsFullscreen =>
