@@ -32,6 +32,6 @@
 - type: startingGear
   id: WorkerICGear
   equipment:
-    jumpsuit: ClothingUniformICWorker
+    jumpsuit: ClothingUniformCLJumpsuit
     shoes: ClothingShoesBootsJack
     back: ClothingBackpack
