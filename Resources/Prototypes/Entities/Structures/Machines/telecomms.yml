@@ -48,8 +48,6 @@
         node: machineFrame
       - !type:DoActsBehavior
         acts: ["Destruction"]
-  - type: Machine
-    board: TelecomServerCircuitboard
   - type: WiresPanel
   - type: Transform
     anchored: true
@@ -61,26 +59,7 @@
   - type: ContainerContainer
     containers:
       key_slots: !type:Container
-      machine_board: !type:Container
       machine_parts: !type:Container
-
-- type: entity
-  parent: TelecomServer
-  id: TelecomServerFilled
-  suffix: Filled All
-  components:
-  - type: ContainerFill
-    containers:
-      key_slots:
-      - EncryptionKeyCommon
-      - EncryptionKeyCargo
-      - EncryptionKeyEngineering
-      - EncryptionKeyMedical
-      - EncryptionKeyScience
-      - EncryptionKeySecurity
-      - EncryptionKeyService
-      - EncryptionKeyCommand
-      - EncryptionKeyJustice #DeltaV - Justice dept
 
 - type: entity
   parent: TelecomServer
@@ -91,74 +70,3 @@
     containers:
       key_slots:
       - EncryptionKeyCommon
-
-- type: entity
-  parent: TelecomServer
-  id: TelecomServerFilledCargo
-  suffix: Cargo
-  components:
-  - type: ContainerFill
-    containers:
-      key_slots:
-      - EncryptionKeyCargo
-
-- type: entity
-  parent: TelecomServer
-  id: TelecomServerFilledEngineering
-  suffix: Engineering
-  components:
-  - type: ContainerFill
-    containers:
-      key_slots:
-      - EncryptionKeyEngineering
-
-- type: entity
-  parent: TelecomServer
-  id: TelecomServerFilledMedical
-  suffix: Medical
-  components:
-  - type: ContainerFill
-    containers:
-      key_slots:
-      - EncryptionKeyMedical
-
-- type: entity
-  parent: TelecomServer
-  id: TelecomServerFilledScience
-  suffix: Science
-  components:
-  - type: ContainerFill
-    containers:
-      key_slots:
-      - EncryptionKeyScience
-
-- type: entity
-  parent: TelecomServer
-  id: TelecomServerFilledSecurityEinstein
-  suffix: Security [Einstein Version]
-  components:
-  - type: ContainerFill
-    containers:
-      key_slots:
-      - EncryptionKeySecurity
-      - EncryptionKeyJustice #DeltaV - Justice dept
-
-- type: entity
-  parent: TelecomServer
-  id: TelecomServerFilledService
-  suffix: Service
-  components:
-  - type: ContainerFill
-    containers:
-      key_slots:
-      - EncryptionKeyService
-
-- type: entity
-  parent: TelecomServer
-  id: TelecomServerFilledCommand
-  suffix: Command
-  components:
-  - type: ContainerFill
-    containers:
-      key_slots:
-      - EncryptionKeyCommand

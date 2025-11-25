@@ -92,12 +92,9 @@
     deleteAfterExplosion: false
   - type: ApcPowerReceiver
     powerLoad: 400
-  - type: Machine
-    board: MicrowaveMachineCircuitboard
   - type: ContainerContainer
     containers:
       microwave_entity_container: !type:Container
-      machine_board: !type:Container
       machine_parts: !type:Container
   - type: EmptyOnMachineDeconstruct
     containers:
@@ -105,25 +102,3 @@
   - type: GuideHelp
     guides:
     - Chef
-
-- type: entity
-  id: SyndicateMicrowave
-  parent: KitchenMicrowave
-  name: donk co. microwave
-  description: So advanced, it can cook donk-pockets in a mere 2.5 seconds!
-  components:
-  - type: Microwave
-    cookTimeMultiplier: 0.5
-    capacity: 10
-    canMicrowaveIdsSafely: false
-    explosionChance: 0.3
-  - type: Sprite
-    sprite: Structures/Machines/microwave_syndie.rsi
-    drawdepth: SmallObjects
-    snapCardinals: true
-  - type: Machine
-    board: SyndicateMicrowaveMachineCircuitboard
-  - type: FoodRecipeProvider
-    providedRecipes:
-    - RecipeBaguetteSword
-    - RecipeThrowingCroissant

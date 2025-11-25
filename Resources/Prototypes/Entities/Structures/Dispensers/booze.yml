@@ -17,21 +17,8 @@
     pack: BoozeDispenserInventory
   - type: Transform
     noRot: false
-  - type: Machine
-    board: BoozeDispenserMachineCircuitboard
   - type: GuideHelp
     guides:
     - Bartender
   - type: StealTarget
     stealGroup: BoozeDispenser
-
-- type: entity
-  id: BoozeDispenserEmpty
-  suffix: Empty
-  parent: BoozeDispenser
-  components:
-  - type: ReagentDispenser
-    storageWhitelist:
-      tags:
-      - DrinkBottle
-    pack: EmptyInventory

@@ -93,8 +93,8 @@ namespace Content.Client.Lobby.UI
         private ColorSelectorSliders _rgbSkinColorSelector;
 
         private bool _customizePronouns;
-        private bool _customizeStationAiName;
-        private bool _customizeBorgName;
+        // private bool _customizeStationAiName;
+        // private bool _customizeBorgName;
 
         public event Action<HumanoidCharacterProfile, int>? OnProfileChanged;
 
@@ -103,11 +103,11 @@ namespace Content.Client.Lobby.UI
 
         public event Action<List<ProtoId<GuideEntryPrototype>>>? OnOpenGuidebook;
 
-        [ValidatePrototypeId<LocalizedDatasetPrototype>]
-        private const string StationAiNames = "NamesAI";
+        // [ValidatePrototypeId<LocalizedDatasetPrototype>]
+        // private const string StationAiNames = "NamesAI";
 
-        [ValidatePrototypeId<DatasetPrototype>]
-        private const string CyborgNames = "names_borg";
+        // [ValidatePrototypeId<DatasetPrototype>]
+        // private const string CyborgNames = "names_borg";
 
         public HumanoidProfileEditor(
             IClientPreferencesManager preferencesManager,
@@ -220,20 +220,20 @@ namespace Content.Client.Lobby.UI
 
             #region Custom Names
 
-            _customizeStationAiName = _cfgManager.GetCVar(CCVars.AllowCustomStationAiName);
-            _customizeBorgName = _cfgManager.GetCVar(CCVars.AllowCustomCyborgName);
+            // _customizeStationAiName = _cfgManager.GetCVar(CCVars.AllowCustomStationAiName);
+            // _customizeBorgName = _cfgManager.GetCVar(CCVars.AllowCustomCyborgName);
 
-            _cfgManager.OnValueChanged(CCVars.AllowCustomStationAiName, OnChangedStationAiNameCustomizationValue);
-            _cfgManager.OnValueChanged(CCVars.AllowCustomCyborgName, OnChangedCyborgNameCustomizationValue);
+            // _cfgManager.OnValueChanged(CCVars.AllowCustomStationAiName, OnChangedStationAiNameCustomizationValue);
+            // _cfgManager.OnValueChanged(CCVars.AllowCustomCyborgName, OnChangedCyborgNameCustomizationValue);
 
-            StationAINameEdit.OnTextChanged += args => { SetStationAiName(args.Text); };
-            CyborgNameEdit.OnTextChanged += args => { SetCyborgName(args.Text); };
+            // StationAINameEdit.OnTextChanged += args => { SetStationAiName(args.Text); };
+            // CyborgNameEdit.OnTextChanged += args => { SetCyborgName(args.Text); };
 
-            if (StationAiNameContainer.Visible != _customizeStationAiName)
-                StationAiNameContainer.Visible = _customizeStationAiName;
+            // if (StationAiNameContainer.Visible != _customizeStationAiName)
+            //     StationAiNameContainer.Visible = _customizeStationAiName;
 
-            if (CyborgNameContainer.Visible != _customizeBorgName)
-                CyborgNameContainer.Visible = _customizeBorgName;
+            // if (CyborgNameContainer.Visible != _customizeBorgName)
+            //     CyborgNameContainer.Visible = _customizeBorgName;
 
             #endregion
 
@@ -436,14 +436,14 @@ namespace Content.Client.Lobby.UI
 
             #region SpawnPriority
 
-            foreach (var value in Enum.GetValues<SpawnPriorityPreference>())
-                SpawnPriorityButton.AddItem(Loc.GetString($"humanoid-profile-editor-preference-spawn-priority-{value.ToString().ToLower()}"), (int) value);
+            // foreach (var value in Enum.GetValues<SpawnPriorityPreference>())
+            //     SpawnPriorityButton.AddItem(Loc.GetString($"humanoid-profile-editor-preference-spawn-priority-{value.ToString().ToLower()}"), (int) value);
 
-            SpawnPriorityButton.OnItemSelected += args =>
-            {
-                SpawnPriorityButton.SelectId(args.Id);
-                SetSpawnPriority((SpawnPriorityPreference) args.Id);
-            };
+            // SpawnPriorityButton.OnItemSelected += args =>
+            // {
+            //     SpawnPriorityButton.SelectId(args.Id);
+            //     SetSpawnPriority((SpawnPriorityPreference) args.Id);
+            // };
 
             #endregion SpawnPriority
 
@@ -493,8 +493,8 @@ namespace Content.Client.Lobby.UI
 
             #region Antags
 
-            Antags.Orphan();
-            CTabContainer.AddTab(Antags, Loc.GetString("humanoid-profile-editor-antags-tab"));
+            // Antags.Orphan();
+            // CTabContainer.AddTab(Antags, Loc.GetString("humanoid-profile-editor-antags-tab"));
 
             #endregion Antags
 
@@ -597,17 +597,17 @@ namespace Content.Client.Lobby.UI
             CosmeticPronousContainer.Visible = newValue;
         }
 
-        private void OnChangedStationAiNameCustomizationValue(bool newValue)
-        {
-            _customizeStationAiName = newValue;
-            StationAiNameContainer.Visible = newValue;
-        }
+        // private void OnChangedStationAiNameCustomizationValue(bool newValue)
+        // {
+        //     _customizeStationAiName = newValue;
+        //     StationAiNameContainer.Visible = newValue;
+        // }
 
-        private void OnChangedCyborgNameCustomizationValue(bool newValue)
-        {
-            _customizeBorgName = newValue;
-            CyborgNameContainer.Visible = newValue;
-        }
+        // private void OnChangedCyborgNameCustomizationValue(bool newValue)
+        // {
+        //     _customizeBorgName = newValue;
+        //     CyborgNameContainer.Visible = newValue;
+        // }
 
         /// Refreshes the species selector
         public void RefreshSpecies()
@@ -751,71 +751,71 @@ namespace Content.Client.Lobby.UI
             EmployerDescriptionLabel.SetMessage(Loc.GetString(prototype.DescriptionKey));
         }
 
-        public void RefreshAntags()
-        {
-            AntagList.DisposeAllChildren();
-            var items = new[]
-            {
-                ("humanoid-profile-editor-antag-preference-yes-button", 0),
-                ("humanoid-profile-editor-antag-preference-no-button", 1)
-            };
-            // Causes a weird error if I just replace AntagList so whatever, have a child
-            var alt = new AlternatingBGContainer { Orientation = LayoutOrientation.Vertical, };
-            AntagList.AddChild(alt);
+        // public void RefreshAntags()
+        // {
+        //     AntagList.DisposeAllChildren();
+        //     var items = new[]
+        //     {
+        //         ("humanoid-profile-editor-antag-preference-yes-button", 0),
+        //         ("humanoid-profile-editor-antag-preference-no-button", 1)
+        //     };
+        //     // Causes a weird error if I just replace AntagList so whatever, have a child
+        //     var alt = new AlternatingBGContainer { Orientation = LayoutOrientation.Vertical, };
+        //     AntagList.AddChild(alt);
 
-            foreach (var antag in _prototypeManager.EnumeratePrototypes<AntagPrototype>().OrderBy(a => Loc.GetString(a.Name)))
-            {
-                if (!antag.SetPreference)
-                    continue;
+        //     foreach (var antag in _prototypeManager.EnumeratePrototypes<AntagPrototype>().OrderBy(a => Loc.GetString(a.Name)))
+        //     {
+        //         if (!antag.SetPreference)
+        //             continue;
 
-                var antagContainer = new BoxContainer()
-                {
-                    Orientation = LayoutOrientation.Horizontal,
-                    HorizontalExpand = true,
-                };
+        //         var antagContainer = new BoxContainer()
+        //         {
+        //             Orientation = LayoutOrientation.Horizontal,
+        //             HorizontalExpand = true,
+        //         };
 
-                var selector = new RequirementsSelector()
-                {
-                    Margin = new(3f, 3f, 3f, 0f),
-                    HorizontalExpand = true,
-                };
-                selector.OnOpenGuidebook += OnOpenGuidebook;
+        //         var selector = new RequirementsSelector()
+        //         {
+        //             Margin = new(3f, 3f, 3f, 0f),
+        //             HorizontalExpand = true,
+        //         };
+        //         selector.OnOpenGuidebook += OnOpenGuidebook;
 
-                var title = Loc.GetString(antag.Name);
-                var description = Loc.GetString(antag.Objective);
-                selector.Setup(items, title, 250, description, guides: antag.Guides);
-                selector.Select(Profile?.AntagPreferences.Contains(antag.ID) == true ? 0 : 1);
+        //         var title = Loc.GetString(antag.Name);
+        //         var description = Loc.GetString(antag.Objective);
+        //         selector.Setup(items, title, 250, description, guides: antag.Guides);
+        //         selector.Select(Profile?.AntagPreferences.Contains(antag.ID) == true ? 0 : 1);
 
-                if (!_characterRequirementsSystem.CheckRequirementsValid(
-                    antag.Requirements ?? new(),
-                    _controller.GetPreferredJob(Profile ?? HumanoidCharacterProfile.DefaultWithSpecies()),
-                    Profile ?? HumanoidCharacterProfile.DefaultWithSpecies(),
-                    _requirements.GetRawPlayTimeTrackers(),
-                    _requirements.IsWhitelisted(),
-                    antag,
-                    _entManager,
-                    _prototypeManager,
-                    _cfgManager,
-                    out var reasons))
-                {
-                    var reason = _characterRequirementsSystem.GetRequirementsText(reasons);
-                    selector.LockRequirements(reason);
-                    Profile = Profile?.WithAntagPreference(antag.ID, false);
-                    SetDirty();
-                }
-                else
-                    selector.UnlockRequirements();
+        //         if (!_characterRequirementsSystem.CheckRequirementsValid(
+        //             antag.Requirements ?? new(),
+        //             _controller.GetPreferredJob(Profile ?? HumanoidCharacterProfile.DefaultWithSpecies()),
+        //             Profile ?? HumanoidCharacterProfile.DefaultWithSpecies(),
+        //             _requirements.GetRawPlayTimeTrackers(),
+        //             _requirements.IsWhitelisted(),
+        //             antag,
+        //             _entManager,
+        //             _prototypeManager,
+        //             _cfgManager,
+        //             out var reasons))
+        //         {
+        //             var reason = _characterRequirementsSystem.GetRequirementsText(reasons);
+        //             selector.LockRequirements(reason);
+        //             Profile = Profile?.WithAntagPreference(antag.ID, false);
+        //             SetDirty();
+        //         }
+        //         else
+        //             selector.UnlockRequirements();
 
-                selector.OnSelected += preference =>
-                {
-                    Profile = Profile?.WithAntagPreference(antag.ID, preference == 0);
-                    SetDirty();
-                };
+        //         selector.OnSelected += preference =>
+        //         {
+        //             Profile = Profile?.WithAntagPreference(antag.ID, preference == 0);
+        //             SetDirty();
+        //         };
 
-                antagContainer.AddChild(selector);
-                alt.AddChild(antagContainer);
-            }
-        }
+        //         antagContainer.AddChild(selector);
+        //         alt.AddChild(antagContainer);
+        //     }
+        // }
 
         private void SetDirty()
         {
@@ -881,10 +881,10 @@ namespace Content.Client.Lobby.UI
             UpdateSexControls();
             UpdateGenderControls();
             UpdateDisplayPronounsControls();
-            UpdateStationAiControls();
-            UpdateCyborgControls();
+            // UpdateStationAiControls();
+            // UpdateCyborgControls();
             UpdateSkinColor();
-            UpdateSpawnPriorityControls();
+            // UpdateSpawnPriorityControls();
             UpdateFlavorTextEdit();
             UpdateCustomSpecieNameEdit();
             UpdateAgeEdit();
@@ -898,7 +898,7 @@ namespace Content.Client.Lobby.UI
             UpdateWeight();
             UpdateCharacterRequired();
 
-            RefreshAntags();
+            // RefreshAntags();
             RefreshJobs();
             RefreshSpecies();
             RefreshNationalities();
@@ -1268,19 +1268,19 @@ namespace Content.Client.Lobby.UI
             IsDirty = true;
         }
 
-        private void SetStationAiName(string? stationAiName)
-        {
-            Profile = Profile?.WithStationAiName(stationAiName);
-            ReloadPreview();
-            IsDirty = true;
-        }
+        // private void SetStationAiName(string? stationAiName)
+        // {
+        //     Profile = Profile?.WithStationAiName(stationAiName);
+        //     ReloadPreview();
+        //     IsDirty = true;
+        // }
 
-        private void SetCyborgName(string? cyborgName)
-        {
-            Profile = Profile?.WithCyborgName(cyborgName);
-            ReloadPreview();
-            IsDirty = true;
-        }
+        // private void SetCyborgName(string? cyborgName)
+        // {
+        //     Profile = Profile?.WithCyborgName(cyborgName);
+        //     ReloadPreview();
+        //     IsDirty = true;
+        // }
 
         private string GetFormattedPronounsFromGender()
         {
@@ -1572,43 +1572,43 @@ namespace Content.Client.Lobby.UI
                 CosmeticPronounsNameEdit.Text = Profile.DisplayPronouns;
         }
 
-        private void UpdateStationAiControls()
-        {
-            if (Profile == null)
-                return;
-            // HULLROT EDIT: removing station ai name
-            StationAINameEdit.Text = Profile.StationAiName ?? string.Empty;
+        // private void UpdateStationAiControls()
+        // {
+        //     if (Profile == null)
+        //         return;
+        //     // HULLROT EDIT: removing station ai name
+        //     StationAINameEdit.Text = Profile.StationAiName ?? string.Empty;
 
-            if (StationAINameEdit.Text != string.Empty)
-                return;
+        //     if (StationAINameEdit.Text != string.Empty)
+        //         return;
 
-            var stationAiNames = _prototypeManager.Index<LocalizedDatasetPrototype>(StationAiNames);
-            var randomName = _random.Pick(stationAiNames.Values);
-            StationAINameEdit.PlaceHolder = Loc.GetString(randomName);
-        }
+        //     var stationAiNames = _prototypeManager.Index<LocalizedDatasetPrototype>(StationAiNames);
+        //     var randomName = _random.Pick(stationAiNames.Values);
+        //     StationAINameEdit.PlaceHolder = Loc.GetString(randomName);
+        // }
 
-        private void UpdateCyborgControls()
-        {
-            if (Profile == null)
-                return;
+        // private void UpdateCyborgControls()
+        // {
+        //     if (Profile == null)
+        //         return;
 
-            CyborgNameEdit.Text = Profile.CyborgName ?? string.Empty;
+        //     CyborgNameEdit.Text = Profile.CyborgName ?? string.Empty;
 
-            if (CyborgNameEdit.Text != string.Empty)
-                return;
+        //     if (CyborgNameEdit.Text != string.Empty)
+        //         return;
 
-            var borgNames = _prototypeManager.Index<DatasetPrototype>(CyborgNames);
-            var randomName = _random.Pick(borgNames.Values);
-            CyborgNameEdit.PlaceHolder = Loc.GetString(randomName);
-        }
+        //     var borgNames = _prototypeManager.Index<DatasetPrototype>(CyborgNames);
+        //     var randomName = _random.Pick(borgNames.Values);
+        //     CyborgNameEdit.PlaceHolder = Loc.GetString(randomName);
+        // }
 
-        private void UpdateSpawnPriorityControls()
-        {
-            if (Profile == null)
-                return;
+        // private void UpdateSpawnPriorityControls()
+        // {
+        //     if (Profile == null)
+        //         return;
 
-            SpawnPriorityButton.SelectId((int) Profile.SpawnPriority);
-        }
+        //     SpawnPriorityButton.SelectId((int) Profile.SpawnPriority);
+        // }
 
         private void UpdateHeightWidthSliders()
         {

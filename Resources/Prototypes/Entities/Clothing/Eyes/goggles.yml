@@ -36,16 +36,6 @@
     sprite: Clothing/Eyes/Goggles/medical_nightvision.rsi
 
 - type: entity
-  parent: [ClothingEyesNightVisionGoggles, ClothingEyesHudDiagnostic]
-  id: ClothingEyesNightVisionDiagnosticGoggles
-  name: night vision diagnostic goggles
-  components:
-  - type: Sprite
-    sprite: Clothing/Eyes/Goggles/diagnostic_nightvision.rsi
-  - type: Clothing
-    sprite: Clothing/Eyes/Goggles/diagnostic_nightvision.rsi
-
-- type: entity
   parent: ClothingEyesNightVisionGoggles
   id: ClothingEyesNightVisionGogglesSyndie
   suffix: "Chameleon"
@@ -57,13 +47,6 @@
     interfaces:
       enum.ChameleonUiKey.Key:
         type: ChameleonBoundUserInterface
-
-- type: entity
-  parent: [ClothingEyesNightVisionGogglesSyndie, ShowSecurityIcons]
-  id: ClothingEyesNightVisionGogglesNukie
-  suffix: "Chameleon, NukeOps"
-  components:
-  - type: ShowSyndicateIcons
 
 # Thermal Vision Goggles
 
@@ -83,34 +66,3 @@
     toggleAction: PulseThermalVision
   - type: IdentityBlocker
     coverage: EYES
-
-- type: entity
-  parent: ClothingEyesThermalVisionGoggles
-  id: ClothingEyesThermalVisionMonocle
-  name: thermonocle
-  description: Never before has seeing through walls felt so gentlepersonly.
-  components:
-  - type: Sprite
-    sprite: Clothing/Eyes/Goggles/monocle_thermal.rsi
-  - type: Clothing
-    sprite: Clothing/Eyes/Goggles/monocle_thermal.rsi
-
-- type: entity
-  parent: ClothingEyesThermalVisionGoggles
-  id: ClothingEyesThermalVisionGogglesSyndie
-  suffix: "Chameleon"
-  components:
-  - type: ChameleonClothing
-    slot: [eyes]
-    default: ClothingEyesThermalVisionGoggles
-  - type: UserInterface
-    interfaces:
-      enum.ChameleonUiKey.Key:
-        type: ChameleonBoundUserInterface
-
-- type: entity
-  parent: [ClothingEyesThermalVisionGogglesSyndie, ShowSecurityIcons]
-  id: ClothingEyesThermalVisionGogglesNukie
-  suffix: "Chameleon, NukeOps"
-  components:
-  - type: ShowSyndicateIcons

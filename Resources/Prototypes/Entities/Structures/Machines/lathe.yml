@@ -106,8 +106,6 @@
       map: ["enum.MaterialStorageVisualLayers.Inserting"]
     - state: panel
       map: ["enum.WiresVisualLayers.MaintenancePanel"]
-  - type: Machine
-    board: AutolatheMachineCircuitboard
   - type: MaterialStorage
     whitelist:
       tags:
@@ -290,8 +288,6 @@
   components:
   - type: Sprite
     sprite: Structures/Machines/autolathe_hypercon.rsi
-  - type: Machine
-    board: AutolatheHyperConvectionMachineCircuitboard
 
 - type: entity
   id: Protolathe
@@ -312,8 +308,6 @@
       map: ["enum.MaterialStorageVisualLayers.Inserting"]
     - state: panel
       map: ["enum.WiresVisualLayers.MaintenancePanel"]
-  - type: Machine
-    board: ProtolatheMachineCircuitboard
   - type: MaterialStorage
     whitelist:
       tags:
@@ -327,155 +321,6 @@
   - type: Lathe
     idleState: icon
     runningState: building
-    staticRecipes:
-    - LargeBeaker
-    - Dropper
-    - ClothingEyesGlassesChemical
-    - N14MaterialCircuitry
-    dynamicRecipes:
-    - PowerDrill
-    - MiningDrill
-    - MiningDrillDiamond
-    - AnomalyScanner
-    - AnomalyLocator
-    - AnomalyLocatorWide
-    - HandheldCrewMonitor
-    - Scalpel
-    - Retractor
-    - Cautery
-    - Drill
-    - WeaponParticleDecelerator
-    - HoloprojectorField
-    - Saw
-    - Hemostat
-    - CryostasisBeaker
-    - SyringeCryostasis
-    - Syringe
-    - DisposableSyringe
-    - Implanter
-    - PillCanister
-    - ChemistryEmptyBottle01
-    - AdvancedCapacitorStockPart
-    - AdvancedMatterBinStockPart
-    - NanoManipulatorStockPart
-    - SuperCapacitorStockPart
-    - SuperMatterBinStockPart
-    - PicoManipulatorStockPart
-    - BluespaceCapacitorStockPart
-    - BluespaceManipulatorStockPart
-    - BluespaceMatterBinStockPart
-    - AdvMopItem
-    - WeaponSprayNozzle
-    - ClothingBackpackWaterTank
-    - MegaSprayBottle
-    - TimerTrigger
-    - ChemicalPayload
-    - FlashPayload
-    - Signaller
-    - SignallerAdvanced
-    - SignalTrigger
-    - VoiceTrigger
-    - Igniter
-    - HandHeldMassScannerEE
-    - PowerCellMicrortg
-    - PowerCellMicroreactor
-    - PowerCellHigh
-    - WeaponPistolCHIMP
-    - ClothingMaskWeldingGas
-    - WeaponGauntletGorilla
-    - SynthesizerInstrument
-    - RPED
-    - ClothingShoesBootsMag
-    - ClothingShoesBootsMoon
-    - ClothingShoesBootsSpeed
-    - ClothingShoesBootsMagAdv
-    - NodeScanner
-    - HolofanProjector
-    - BluespaceBeaker
-    - SyringeBluespace
-  #  - WeaponForceGun
-    - WeaponLaserSvalinn
-    - WeaponCivilianDisabler
-    - WeaponProtoKineticAccelerator
-  #  - WeaponTetherGun
-  #  - WeaponGrapplingGun
-    - ClothingBackpackHolding
-    - ClothingBackpackSatchelHolding
-    - ClothingBackpackDuffelHolding
-    - WelderExperimental
-    - JawsOfLife
-    - CoreSilver # Nyanotrasen - Silver Golem core
-    - OreBagOfHolding
-    - DeviceQuantumSpinInverter
-    - PKAUpgradeDamage # Lavaland Change
-    - PKAUpgradeRange # Lavaland Change
-    - PKAUpgradeFireRate # Lavaland Change
-    - XenoTranslator
-    - AdvancedGalaticCommonTranslatorImplanter
-    - BubblishTranslatorImplanter
-    - NekomimeticTranslatorImplanter
-    - DraconicTranslatorImplanter
-    - CanilunztTranslatorImplanter
-    - SolCommonTranslatorImplanter
-    - RootSpeakTranslatorImplanter
-    - AnimalTranslator
-    - MofficTranslatorImplanter
-    - ClothingEyesNightVisionGoggles
-    - ClothingEyesNightVisionDiagnosticGoggles
-    - ClothingEyesThermalVisionGoggles
-    - RCDAmmo #DeltaV
-    - RCD #EE
-    - RPD
-    # Shitmed Change
-    - EnergyScalpel
-    - EnergyCautery
-    - AdvancedRetractor
-    - VehicleWheelchairFolded # Goobstation
-  - type: EmagLatheRecipes
-    emagDynamicRecipes:
-    - BoxBeanbag
-    - BoxShotgunIncendiary
-    - BoxShotgunUranium
-    - ExplosivePayload
-    - GrenadeBlast
-    - GrenadeEMP
-    - GrenadeFlash
-    - HoloprojectorSecurity
-    - MagazineBoxLightRifleIncendiary
-    - MagazineBoxLightRifleUranium
-    - MagazineBoxMagnumIncendiary
-    - MagazineBoxMagnumUranium
-    - MagazineBoxPistolIncendiary
-    - MagazineBoxPistolUranium
-    - MagazineBoxRifleIncendiary
-    - MagazineBoxRifleUranium
-    - MagazineGrenadeEmpty
-    - MagazineLightRifleIncendiary
-    - MagazineLightRifleUranium
-    - MagazinePistolIncendiary
-    - MagazinePistolUranium
-    - MagazineRifleIncendiary
-    - MagazineRifleUranium
-    - MagazineShotgunBeanbag
-    - MagazineShotgunIncendiary
-    - MagazineShotgunIncendiary
-    - PortableRecharger
-    - PowerCageHigh
-    - PowerCageMedium
-    - PowerCageSmall
-    - ShellTranquilizer
-    - SpeedLoaderMagnumIncendiary
-    - SpeedLoaderMagnumUranium
-    - TelescopicShield
-    - Truncheon
-    - WeaponAdvancedLaser
-    - WeaponLaserCannon
-    - WeaponLaserCarbine
-    - WeaponXrayCannon
-    - WeaponEnergyGun       # DeltaV - Energy Gun
-    - WeaponEnergyGunMini   # DeltaV - Miniature Energy Gun
-    - WeaponEnergyGunPistol # DeltaV - PDW-9 Energy Pistol
-    - WeaponGunLaserCarbineAutomatic # DeltaV - IK-60 Laser Carbine
 
 - type: entity
   id: ProtolatheHyperConvection
@@ -485,8 +330,6 @@
   components:
   - type: Sprite
     sprite: Structures/Machines/protolathe_hypercon.rsi
-  - type: Machine
-    board: ProtolatheHyperConvectionMachineCircuitboard
 
 - type: entity
   id: CircuitImprinter
@@ -505,15 +348,12 @@
       map: ["enum.PowerDeviceVisualLayers.Powered"]
     - state: panel
       map: ["enum.WiresVisualLayers.MaintenancePanel"]
-  - type: Machine
-    board: CircuitImprinterMachineCircuitboard
   - type: Lathe
     producingSound: /Audio/Machines/circuitprinter.ogg
     idleState: icon
     runningState: building
     staticRecipes:
     - ProtolatheMachineCircuitboard
-    - AutolatheMachineCircuitboard
     - BookPressMachineCircuitboard
     - CircuitImprinterMachineCircuitboard
     - BiogeneratorMachineCircuitboard
@@ -521,9 +361,7 @@
     - MaterialReclaimerMachineCircuitboard
     - ElectrolysisUnitMachineCircuitboard
     - CentrifugeMachineCircuitboard
-    - ChemDispenserMachineCircuitboard
     - ChemMasterMachineCircuitboard
-    - CondenserMachineCircuitBoard
     - HotplateMachineCircuitboard
     - PrinterDocMachineCircuitboard  # Corvax-Printer
     - UniformPrinterMachineCircuitboard
@@ -552,15 +390,8 @@
     - VaccinatorMachineCircuitboard
     - DiagnoserMachineCircuitboard
     - BiomassReclaimerMachineCircuitboard
-    - BiofabricatorMachineCircuitboard
-    - SurveillanceCameraRouterCircuitboard
-    - SurveillanceCameraMonitorCircuitboard
-    - SurveillanceWirelessCameraMonitorCircuitboard
-    - SurveillanceCameraWirelessRouterCircuitboard
     - ComputerTelevisionCircuitboard
     - JukeboxCircuitBoard
-    - SurveillanceWirelessCameraMovableCircuitboard
-    - SurveillanceWirelessCameraAnchoredCircuitboard
     - SolarControlComputerCircuitboard
     - SolarTrackerElectronics
     - TurboItemRechargerCircuitboard
@@ -587,7 +418,6 @@
     - HamtrCentralElectronics
     - HamtrPeripheralsElectronics
     - PortableGeneratorPacmanMachineCircuitboard
-    - PortableGeneratorSuperPacmanMachineCircuitboard
     - PortableGeneratorJrPacmanMachineCircuitboard
     - WallmountGeneratorElectronics
     - WallmountGeneratorAPUElectronics
@@ -662,8 +492,6 @@
   components:
   - type: Sprite
     sprite: Structures/Machines/circuit_imprinter_hypercon.rsi
-  - type: Machine
-    board: CircuitImprinterHyperConvectionMachineCircuitboard
 
 - type: entity
   id: ExosuitFabricator
@@ -680,8 +508,6 @@
       map: ["enum.MaterialStorageVisualLayers.Inserting"]
     - state: fab-o
       map: ["enum.WiresVisualLayers.MaintenancePanel"]
-  - type: Machine
-    board: ExosuitFabricatorMachineCircuitboard
   - type: Lathe
     idleState: fab-idle
     runningState: fab-active
@@ -699,7 +525,6 @@
     - BorgModuleTreatment
     - BorgModuleSurgery
     - BorgModuleCleaning
-    - CyborgEndoskeleton
     - LeftArmBorg
     - RightArmBorg
     - LeftLegBorg
@@ -784,9 +609,7 @@
     - HamtrRArm
     - HamtrLLeg
     - HamtrRLeg
-    - VimHarness
     # Begin Nyano additions
-    - JetpackBlue
     - JetpackMini
   # End Nyano additions
     - ClarkeHarness
@@ -849,58 +672,6 @@
     - Robotics
 
 - type: entity
-  id: Biofabricator
-  parent: [BaseLathe, BaseMaterialSiloUtilizer]
-  name: biofabricator
-  description: Produces animal cubes using biomass.
-  components:
-  - type: Sprite
-    sprite: Structures/Machines/biofabricator.rsi
-    snapCardinals: true
-    layers:
-    - state: icon
-      map: ["enum.LatheVisualLayers.IsRunning"]
-      color: "#ffaa99"
-    - state: unlit
-      shader: unshaded
-      map: ["enum.PowerDeviceVisualLayers.Powered"]
-      color: "#ffaaaa"
-    - state: inserting
-      map: ["enum.MaterialStorageVisualLayers.Inserting"]
-      color: "#ffaaaa"
-    - state: panel
-      map: ["enum.WiresVisualLayers.MaintenancePanel"]
-  - type: Machine
-    board: BiofabricatorMachineCircuitboard
-  - type: MaterialStorage
-    ignoreColor: true
-    whitelist:
-      tags:
-      - Sheet
-      - RawMaterial
-      - Ingot
-      - Wooden
-      - ClothMade
-      - Gauze
-      - Metal
-  - type: Lathe
-    idleState: icon
-    runningState: building
-    staticRecipes:
-    - MonkeyCube
-    - KoboldCube
-    - CowCube
-    - GoatCube
-    - MothroachCube
-    - MouseCube
-    - CockroachCube
-  - type: EmagLatheRecipes
-    emagStaticRecipes:
-    - AbominationCube
-    - SpaceCarpCube
-    - SpaceTickCube
-
-- type: entity
   id: SecurityTechFab
   parent: [BaseLatheLube, BaseMaterialSiloUtilizer]
   name: security techfab
@@ -919,8 +690,6 @@
       map: ["enum.MaterialStorageVisualLayers.Inserting"]
     - state: panel
       map: ["enum.WiresVisualLayers.MaintenancePanel"]
-  - type: Machine
-    board: SecurityTechFabCircuitboard
   - type: Lathe
     idleState: icon
     runningState: icon
@@ -991,7 +760,6 @@
       - TargetSyndicate
       - WeaponDisablerPractice
       - WeaponFlareGunSecurity
-      - WeaponLaserCarbinePractice
       - Zipties
       - GrenadeFlashBang # Goobstation
       - ShockCollar
@@ -1010,7 +778,6 @@
       - TelescopicShield
       - HoloprojectorSecurity
       - BolaEnergy
-      - ClothingHeadHelmetBasic
       - MagazineShotgunBeanbag
       - ShellTranquilizer
       - CartridgeEpinephrine # Goobstation
@@ -1053,7 +820,6 @@
       - Terminus
       - BoxShotgunIncendiary
       - BoxShotgunUranium
-      - EncryptionKeySyndie
       - CartridgeLightRifleIncendiary
       - CartridgeMagnumIncendiary
       - CartridgePistolIncendiary
@@ -1104,19 +870,14 @@
       - SpeedLoaderRifleHeavyUranium
       - TimerTrigger
       - VoiceTrigger
-      - WeaponAdvancedLaser
       - WeaponDisabler
       - WeaponDisablerSMG
       - WeaponLaserCannon
-      - WeaponLaserCarbine
       - ClothingEyesNightVisionSecurityGoggles
       - ClothingHeadHelmetInsulated # Nyanotrasen - Insulative headgear
       - ClothingHeadCage # Nyanotrasen - Insulative headgear
       - ShockCollar # Nyanotrasen - Shock Collar
       - WeaponXrayCannon
-      - WeaponEnergyGun
-      - WeaponEnergyGunMini
-      - WeaponEnergyGunPistol
       - WeaponGunLaserCarbineAutomatic
       - CartridgeSpecialIncendiary
       - CartridgeSpecialUranium
@@ -1152,8 +913,6 @@
       - WeaponEnergyTurretStationControlPanelElectronics
       - WeaponSubMachineGunFPA90
       - WeaponSubMachineGunBRDIR25
-      - WeaponPistolMk58
-      - WeaponPistolN1984
       - WeaponPistolViper
       - WeaponPistolCobra
       - MagazineRifleShrapnel
@@ -1205,8 +964,6 @@
           map: ["enum.MaterialStorageVisualLayers.Inserting"]
         - state: panel
           map: ["enum.WiresVisualLayers.MaintenancePanel"]
-    - type: Machine
-      board: AmmoTechFabCircuitboard
     - type: Lathe
       idleState: icon
       runningState: icon
@@ -1285,7 +1042,7 @@
           - Gauze
           - Metal
 
-      
+
 - type: entity
   id: MedicalTechFab
   parent: [BaseLatheLube, BaseMaterialSiloUtilizer]
@@ -1308,80 +1065,6 @@
   - type: Lathe
     idleState: icon
     runningState: icon
-    staticRecipes:
-    - Brutepack
-    - Ointment
-    - Gauze
-    - HandLabeler
-    - Defibrillator
-    - HandheldHealthAnalyzer
-    - ClothingHandsGlovesLatex
-    - ClothingHandsGlovesNitrile
-    - ClothingMaskSterile
-    - DiseaseSwab
-    - Beaker
-    - LargeBeaker
-    - Dropper
-    - Jug
-    - Syringe
-    - DisposableSyringe
-    - Implanter
-    - PillCanister
-    - BodyBag
-    - ChemistryEmptyBottle01
-    - RollerBedSpawnFolded
-    - CheapRollerBedSpawnFolded
-    - EmergencyRollerBedSpawnFolded
-    - Medkit
-    - MedkitBurn
-    - MedkitToxin
-    - MedkitO2
-    - MedkitBrute
-    - MedkitAdvanced
-    - MedkitRadiation
-    - MedkitCombat
-    - Scalpel
-    - Retractor
-    - Cautery
-    - Drill
-    - Saw
-    - Hemostat
-    - ClothingEyesGlassesChemical
-    - BoneGel # Shitmed Change
-    - AACTablet # DeltaV
-    - VehicleWheelchairFolded # Goobstation - Vehicles
-    - SyringeCase # Morphine
-    - CartridgeAtropine # Goobstation - ParamedHypo
-    - CartridgeEpinephrine # Goobstation - ParamedHypo
-    - CartridgeBicaridine # Goobstation - ParamedHypo
-    - CartridgeDermaline # Goobstation - ParamedHypo
-    - CartridgeSaline # Goobstation - ParamedHypo
-    - ParamedHypo # Goobstation - ParamedHypo
-    dynamicRecipes:
-    - ChemicalPayload
-    - CryostasisBeaker
-    - BluespaceBeaker
-    - SyringeBluespace
-    - ClothingEyesHudMedical # Nyano
-    - ChemicalPayload # Nyano
-    - SyringeCryostasis
-    - ClothingEyesNightVisionMedicalGoggles
-    - EnvirosuitExtinguisherRefill
-    # Shitmed Change
-    - EnergyScalpel
-    - EnergyCautery
-    - AdvancedRetractor
-    - OmnimedTool
-    - MedicalCyberneticEyes
-  - type: EmagLatheRecipes
-    emagStaticRecipes:
-    - CartridgeEphedrine
-    - CartridgePuncturase
-    - CartridgeTirizene
-  - type: Machine
-    board: MedicalTechFabCircuitboard
-  - type: StealTarget
-    stealGroup: MedicalTechFabCircuitboard
 
 - type: entity
   parent: [BaseLathe, BaseMaterialSiloUtilizer]
@@ -1397,176 +1080,12 @@
     layers:
     - state: icon
       map: ["enum.LatheVisualLayers.IsRunning"]
-  - type: Machine
-    board: UniformPrinterMachineCircuitboard
   - type: Lathe
     producingSound: /Audio/Machines/uniformprinter.ogg
     idleState: icon
     runningState: building
     staticRecipes:
-    - ClothingUniformJumpsuitColorGrey
-    - ClothingUniformJumpskirtColorGrey
-    - ClothingUniformJumpsuitBartender
-    - ClothingUniformJumpskirtBartender
-    - ClothingHeadHatCapcap
-    - ClothingHeadHatCaptain
-    - ClothingUniformJumpsuitCaptain
-    - ClothingUniformJumpskirtCaptain
-    - ClothingUniformJumpsuitCapFormal
-    - ClothingUniformJumpskirtCapFormalDress
-    - ClothingUniformJumpsuitCargo
-    - ClothingUniformJumpskirtCargo
-    - ClothingUniformJumpsuitSalvageSpecialist
-    - ClothingHeadHatBeretEngineering
-    - ClothingUniformJumpsuitChiefEngineer
-    - ClothingUniformJumpskirtChiefEngineer
-    - ClothingUniformJumpsuitChiefEngineerTurtle
-    - ClothingUniformJumpskirtChiefEngineerTurtle
-    - ClothingUniformJumpsuitChaplain
-    - ClothingUniformJumpskirtChaplain
-    - ClothingUniformJumpsuitChef
-    - ClothingUniformJumpskirtChef
-    - ClothingUniformJumpsuitChemistry
-    - ClothingUniformJumpskirtChemistry
-    - ClothingUniformJumpsuitClown
-    - ClothingHeadHatBeretCmo
-    - ClothingUniformJumpsuitCMO
-    - ClothingUniformJumpskirtCMO
-    - ClothingUniformJumpsuitCMOTurtle
-    - ClothingUniformJumpskirtCMOTurtle
-    - ClothingUniformJumpsuitDetective
-    - ClothingUniformJumpskirtDetective
-    - ClothingUniformJumpsuitEngineering
-    - ClothingUniformJumpskirtEngineering
-    - ClothingUniformJumpsuitSeniorEngineer
-    - ClothingUniformJumpskirtSeniorEngineer
-    - ClothingHeadHatHopcap
-    - ClothingUniformJumpsuitHoP
-    - ClothingUniformJumpskirtHoP
-    - ClothingHeadHatBeretHoS
-    - ClothingHeadHatHoshat
-    - ClothingUniformJumpsuitHoS
-    - ClothingUniformJumpskirtHoS
-    - ClothingUniformJumpsuitHoSBlue # DeltaV - alternate sec uniforms
-    - ClothingUniformJumpskirtHoSBlue # DeltaV - alternate sec uniforms
-    - ClothingUniformJumpsuitHoSGrey # DeltaV - alternate sec uniforms
-    - ClothingUniformJumpskirtHoSGrey # DeltaV - alternate sec uniforms
-    - ClothingUniformJumpsuitHosFormal
-    - ClothingUniformJumpskirtHosFormal
-    - ClothingUniformJumpsuitHoSAlt
-    - ClothingUniformJumpskirtHoSAlt
-    - ClothingUniformJumpsuitHoSBlue
-    - ClothingUniformJumpsuitHoSGrey
-    - ClothingUniformJumpsuitHoSParadeMale
-    - ClothingUniformJumpskirtHoSParadeMale
-    - ClothingUniformJumpsuitHydroponics
-    - ClothingUniformJumpskirtHydroponics
-    - ClothingUniformJumpsuitJanitor
-    - ClothingUniformJumpskirtJanitor
-    - ClothingUniformJumpsuitLawyerBlack
-    - ClothingUniformJumpsuitLibrarian
-    - ClothingUniformJumpskirtColorLightBrown
-    - ClothingUniformCourier # DeltaV - Courier Uniform
-    - ClothingUniformSkirtCourier # DeltaV - Courier Uniform
-    - ClothingUniformJumpsuitMantis # Nyanotrasen - Forensic Mantis
-    - ClothingUniformSkirtMantis # Nyanotrasen - Forensic Mantis
-    - ClothingHeadHatBeretSeniorPhysician
-    - ClothingUniformJumpsuitMedicalDoctor
-    - ClothingUniformJumpskirtMedicalDoctor
-    - ClothingUniformJumpsuitSeniorPhysician
-    - ClothingUniformJumpskirtSeniorPhysician
-    - ClothingUniformJumpsuitMime
-    - ClothingUniformJumpskirtMime
-    - ClothingUniformJumpsuitMusician
-    - ClothingUniformJumpsuitParamedic
-    - ClothingUniformJumpskirtParamedic
-    - ClothingUniformJumpsuitSeniorOfficer
-    - ClothingUniformJumpskirtSeniorOfficer
-    - ClothingUniformJumpsuitPrisoner
-    - ClothingUniformJumpskirtPrisoner
-    - ClothingHeadHatQMsoft
-    - ClothingHeadHatBeretQM
-    - ClothingUniformJumpsuitQM
-    - ClothingUniformJumpskirtQM
-    - ClothingUniformJumpsuitQMTurtleneck
-    - ClothingUniformJumpskirtQMTurtleneck
-    - ClothingUniformJumpsuitQMFormal
-    - ClothingHeadHatBeretRND
-    - ClothingUniformJumpsuitResearchDirector
-    - ClothingUniformJumpskirtResearchDirector
-    - ClothingUniformJumpsuitScientist
-    - ClothingUniformJumpskirtScientist
-    - ClothingUniformJumpsuitSeniorResearcher
-    - ClothingUniformJumpskirtSeniorResearcher
-    - ClothingHeadHatBeretSecurity
-    - ClothingUniformJumpsuitSec
-    - ClothingUniformJumpskirtSec
-    - ClothingUniformJumpsuitSecBlue # DeltaV - alternate sec uniforms
-    - ClothingUniformJumpskirtSecBlue # DeltaV - alternate sec uniforms
-    - ClothingUniformJumpsuitSecGrey # DeltaV - alternate sec uniforms
-    - ClothingUniformJumpskirtSecGrey # DeltaV - alternate sec uniforms
-    - ClothingHeadHatBeretBrigmedic
-    - ClothingUniformJumpsuitBrigmedic
-    - ClothingUniformJumpskirtBrigmedic
-    - ClothingHeadHatBeretWarden
-    - ClothingHeadHatWarden
-    - ClothingUniformJumpsuitWarden
-    - ClothingUniformJumpskirtWarden
-    - ClothingUniformJumpsuitWardenBlue # DeltaV - alternate sec uniforms
-    - ClothingUniformJumpskirtWardenBlue # DeltaV - alternate sec uniforms
-    - ClothingUniformJumpsuitWardenGrey # DeltaV - alternate sec uniforms
-    - ClothingUniformJumpskirtWardenGrey # DeltaV - alternate sec uniforms
-    - ClothingHeadHatParamedicsoft
-    # Winter outfits
-    - ClothingOuterWinterCap
-    - ClothingOuterWinterCE
-    - ClothingOuterWinterCMO
-    - ClothingOuterWinterHoP
-    - ClothingOuterWinterHoSUnarmored
-    - ClothingOuterWinterWardenUnarmored
-    - ClothingOuterWinterQM
-    - ClothingOuterWinterRD
-    - ClothingNeckMantleCap
-    - ClothingNeckMantleCE
-    - ClothingNeckMantleCMO
-    - ClothingNeckMantleHOP
-    - ClothingNeckMantleHOS
-    - ClothingNeckMantleRD
-    - ClothingNeckMantleQM
-    - ClothingOuterStasecSweater # DeltaV - added stasec sweater to uniform printer.
-    - ClothingOuterWinterMusician
-    - ClothingOuterWinterClown
-    - ClothingOuterWinterMime
-    - ClothingOuterWinterCoat
-    - ClothingOuterWinterJani
-    - ClothingOuterWinterBar
-    - ClothingOuterWinterChef
-    - ClothingOuterWinterHydro
-    - ClothingOuterWinterAtmos
-    - ClothingOuterWinterEngi
-    - ClothingOuterWinterCargo
-    - ClothingOuterWinterMiner
-    - ClothingOuterWinterMed
-    - ClothingOuterWinterPara
-    - ClothingOuterWinterChem
-    - ClothingOuterWinterGen
-    - ClothingOuterWinterViro
-    - ClothingOuterWinterSci
-    - ClothingOuterWinterRobo
-    - ClothingOuterWinterSec
-    # Ties
-    - ClothingNeckTieRed
-    - ClothingNeckTieDet
-    - ClothingNeckTieSci
-    # Scarfs - All scarfs avaible in winterdrobe
-    - ClothingNeckScarfStripedGreen
-    - ClothingNeckScarfStripedBlue
-    - ClothingNeckScarfStripedRed
-    - ClothingNeckScarfStripedBrown
-    - ClothingNeckScarfStripedLightBlue
-    - ClothingNeckScarfStripedOrange
-    - ClothingNeckScarfStripedBlack
-    - ClothingNeckScarfStripedPurple
+    - CarpetWhite
     # Carpets
     - Carpet
     - CarpetBlack
@@ -1579,28 +1098,7 @@
     - CarpetWhite
   - type: EmagLatheRecipes
     emagStaticRecipes:
-    - ClothingHeadHatCentcomcap
-    - ClothingHeadHatCentcom
-    - ClothingUniformJumpsuitCentcomAgent
-    - ClothingUniformJumpsuitCentcomFormal
-    - ClothingUniformJumpskirtCentcomFormalDress
-    - ClothingUniformJumpsuitCentcomOfficer
-    - ClothingUniformJumpsuitCentcomOfficial
-    - ClothingHeadHatSyndieMAA
-    - ClothingHeadHatSyndie
-    - ClothingUniformJumpsuitOperative
-    - ClothingUniformJumpskirtOperative
-    - ClothingUniformJumpsuitSyndieFormal
-    - ClothingUniformJumpskirtSyndieFormalDress
-    - ClothingHeadPyjamaSyndicateBlack
-    - ClothingUniformJumpsuitPyjamaSyndicateBlack
-    - ClothingHeadPyjamaSyndicatePink
-    - ClothingUniformJumpsuitPyjamaSyndicatePink
-    - ClothingHeadPyjamaSyndicateRed
-    - ClothingUniformJumpsuitPyjamaSyndicateRed
-    - ClothingOuterWinterCentcom
-    - ClothingOuterWinterSyndie
-    - ClothingOuterWinterSyndieCap
+    - CarpetWhite
   - type: MaterialStorage
     whitelist:
       tags:
@@ -1631,10 +1129,8 @@
       map: ["enum.MaterialStorageVisualLayers.Inserting"]
     - state: panel
       map: ["enum.WiresVisualLayers.MaintenancePanel"]
-  - type: Machine
-    board: BiogeneratorMachineCircuitboard
   - type: MaterialStorage
-    insertOnInteract: true 
+    insertOnInteract: true
     canEjectStoredMaterials: false
     ignoreColor: true
     whitelist:
@@ -1650,7 +1146,6 @@
           - FitsInDispenser
   - type: ContainerContainer
     containers:
-      machine_board: !type:Container
       machine_parts: !type:Container
       beaker_slot: !type:ContainerSlot
   - type: Lathe
@@ -1685,8 +1180,7 @@
     - BioGenRobustHarvest
     - BioGenBoozeVendRestock
     - BioGenCondimentsRestock
-    - BioGenChefVendRestock
-    
+
 - type: entity
   parent: [BaseLathe, BaseMaterialSiloUtilizer]
   id: OreProcessor
@@ -1705,8 +1199,6 @@
       map: ["enum.MaterialStorageVisualLayers.Inserting"]
     - state: panel
       map: ["enum.WiresVisualLayers.MaintenancePanel"]
-  - type: Machine
-    board: OreProcessorMachineCircuitboard
   - type: MaterialStorage
     ignoreColor: true
     whitelist:
@@ -1754,8 +1246,6 @@
   components:
   - type: Sprite
     sprite: Structures/Machines/ore_processor_industrial.rsi
-  - type: Machine
-    board: OreProcessorIndustrialMachineCircuitboard
   - type: Lathe
     materialUseMultiplier: 0.75
     timeMultiplier: 0.5
@@ -1774,8 +1264,6 @@
     - state: buttons_on
       shader: unshaded
       map: ["enum.PowerDeviceVisualLayers.Powered"]
-  - type: Machine
-    board: SheetifierMachineCircuitboard
   - type: MaterialStorage
     dropOnDeconstruct: false #should drop ores instead of ingots/sheets
     ignoreColor: true
@@ -1832,7 +1320,6 @@
     staticRecipes:
     - PrizeBall
     - PlushieMothRandom
-    - PlushieVoidborn
     - PlushieMothMusician
     - PlushieMothBartender
     - PlushieBee
@@ -1845,14 +1332,12 @@
     - PlushieSharkBlue
     - PlushieSharkPink
     - PlushieSharkGrey
-    - PlushieCarp
     - PlushieMagicarp
     - PlushieHolocarp
     - PlushieSlime
     - PlushieSnake
     - ToyMouse
     - ToyRubberDuck
-    - PlushieVox
     - PlushieAtmosian
     - PlushiePenguin
     - PlushieHuman
@@ -1891,7 +1376,6 @@
     - PlushieXeno
     - FoamCrossbow
     - RevolverCapGun
-    - PonderingOrb
     - ToyAmongPequeno
     - FoamCutlass
     - WhoopieCushion
@@ -1914,8 +1398,6 @@
     - PlushieJester
     - PlushieSlips
     - PlushieTrystan
-    - PlushieAbductor
-    - PlushieAbductorAgent
     - PlushieNuke
     - ToyNuke
     - FoamBlade
