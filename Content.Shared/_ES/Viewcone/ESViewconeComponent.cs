@@ -1,3 +1,4 @@
+using System.Numerics;
 using Robust.Shared.GameStates;
 
 namespace Content.Shared._ES.Viewcone;
@@ -49,4 +50,5 @@ public sealed partial class ESViewconeComponent : Component
     public Angle? DesiredViewAngle = null;
     public Angle LastMouseRotationAngle;
     public Angle LastWorldRotationAngle;
+    public Vector2 LastWorldPos;
 }
