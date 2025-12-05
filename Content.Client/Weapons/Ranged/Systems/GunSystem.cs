@@ -4,11 +4,13 @@ using Content.Client._RMC14.Movement;
 using Content.Client._RMC14.Weapons.Ranged.Prediction;
 using Content.Client.Animations;
 using Content.Client.Gameplay;
+using Content.Client.CombatMode;
 using Content.Client.Items;
 using Content.Client.Weapons.Ranged.Components;
 using Content.Shared._RMC14.Weapons.Ranged;
 using Content.Shared._RMC14.Weapons.Ranged.Prediction;
 using Content.Shared.CombatMode;
+using Content.Shared.Contests;
 using Content.Shared.Mech.Components;
 using Content.Shared.Weapons.Ranged.Events;
 using Content.Shared.Weapons.Ranged.Systems;
@@ -39,7 +41,9 @@ public sealed partial class GunSystem : SharedGunSystem
     [Dependency] private readonly InputSystem _inputSystem = default!;
     [Dependency] private readonly SharedMapSystem _maps = default!;
     [Dependency] private readonly SharedTransformSystem _xform = default!;
-    [Dependency] private readonly SpriteSystem _sprite = default!;
+    [Dependency] private readonly ContestsSystem _contest = default!; 		// WWDP
+    [Dependency] private readonly SpriteSystem _sprite = default!;			// WWDP
+    [Dependency] private readonly CombatModeSystem _combatMode = default!;	// WWDP
 
     // RMC14
     [Dependency] private readonly GunPredictionSystem _gunPrediction = default!;
@@ -50,7 +54,16 @@ public sealed partial class GunSystem : SharedGunSystem
     //logging - debug
     private ISawmill _sawmill = default!;
 
-    public bool SpreadOverlay
+    // WWDP EDIT START
+	public enum GunSpreadOverlayEnum
+    {
+        Off,
+        Partial,
+        Full
+    }
+
+    private GunSpreadOverlayEnum _spreadOverlay;
+    public GunSpreadOverlayEnum SpreadOverlay
     {
         get => _spreadOverlay;
         set
@@ -59,27 +72,56 @@ public sealed partial class GunSystem : SharedGunSystem
                 return;
 
             _spreadOverlay = value;
-            var overlayManager = IoCManager.Resolve<IOverlayManager>();
 
-            if (_spreadOverlay)
-            {
-                overlayManager.AddOverlay(new GunSpreadOverlay(
-                    EntityManager,
-                    _eyeManager,
-                    Timing,
-                    _inputManager,
-                    _player,
-                    this,
-                    TransformSystem));
-            }
-            else
-            {
-                overlayManager.RemoveOverlay<GunSpreadOverlay>();
-            }
+            UpdateSpreadOverlay();
         }
     }
 
-    private bool _spreadOverlay;
+    private void UpdateSpreadOverlay()
+    {
+        var overlayManager = IoCManager.Resolve<IOverlayManager>();
+        overlayManager.RemoveOverlay<GunSpreadOverlay>();
+        overlayManager.RemoveOverlay<PartialGunSpreadOverlay>();
+
+        switch (_spreadOverlay)
+        {
+            case GunSpreadOverlayEnum.Off:
+                return;
+            case GunSpreadOverlayEnum.Partial:
+                AddPartialSpreadOverlay(overlayManager);
+                return;
+            case GunSpreadOverlayEnum.Full:
+                AddFullSpreadOverlay(overlayManager);
+                return;
+        }
+
+        void AddPartialSpreadOverlay(IOverlayManager overlayManager)
+        {
+            overlayManager.AddOverlay(new PartialGunSpreadOverlay(
+                EntityManager,
+                _eyeManager,
+                Timing,
+                _inputManager,
+                _player,
+                this,
+                TransformSystem,
+                _contest,
+                _sprite));
+        }
+
+        void AddFullSpreadOverlay(IOverlayManager overlayManager)
+        {
+            overlayManager.AddOverlay(new GunSpreadOverlay(
+                EntityManager,
+                _eyeManager,
+                Timing,
+                _inputManager,
+                _player,
+                this,
+                TransformSystem,
+                _contest));
+        }
+    }
 
     public override void Initialize()
     {
@@ -95,8 +137,16 @@ public sealed partial class GunSystem : SharedGunSystem
         InitializeMagazineVisuals();
         InitializeSpentAmmo();
         _sawmill = IoCManager.Resolve<ILogManager>().GetSawmill("gunsystem.client");
+        _combatMode.LocalPlayerCombatModeUpdated += OnCombatModeUpdated; // WWDP EDIT
     }
 
+	// WWDP EDIT START
+    private void OnCombatModeUpdated(bool enabled)
+    {
+        if(SpreadOverlay != GunSpreadOverlayEnum.Full)
+            SpreadOverlay = enabled ? GunSpreadOverlayEnum.Partial : GunSpreadOverlayEnum.Off;
+    }
+	// WWDP EDIT END
     private void OnUpdateClientAmmo(EntityUid uid, AmmoCounterComponent ammoComp, ref UpdateClientAmmoEvent args)
     {
         UpdateAmmoCount(uid, ammoComp, args.AritifialIncrease); //RMC14

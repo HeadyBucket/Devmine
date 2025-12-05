@@ -129,10 +129,54 @@ public abstract partial class SharedGunSystem : EntitySystem
         SubscribeLocalEvent<GunComponent, CycleModeEvent>(OnCycleMode);
         SubscribeLocalEvent<GunComponent, HandSelectedEvent>(OnGunSelected);
         SubscribeLocalEvent<GunComponent, MapInitEvent>(OnMapInit);
+        SubscribeLocalEvent<GunComponent, HolderMoveEvent>(OnHolderMove); // WWDP
 
         Subs.CVar(_config, RMCCVars.RMCGunPrediction, v => GunPrediction = v, true);
         //_sawmill = IoCManager.Resolve<ILogManager>().GetSawmill("sharedgunsystem.shared");
     }
+
+    // WWDP EDIT START
+    private void OnHolderMove(EntityUid uid, GunComponent comp, ref HolderMoveEvent _args)
+    {
+        if (Timing.ApplyingState)
+            return;
+        MoveEvent args = _args.Ev;
+        double posDiff = 0;
+        if (!args.ParentChanged)
+            posDiff = (args.OldPosition.Position - args.NewPosition.Position).Length();
+        double rotDiff = Math.Abs(Angle.ShortestDistance(args.NewRotation, args.OldRotation).Degrees);
+
+        UpdateBonusAngles(Timing.CurTime, comp, posDiff * comp.BonusAngleIncreaseMove + rotDiff * comp.BonusAngleIncreaseTurn);
+        Dirty(uid, comp);
+    }
+
+    /// <summary>
+    /// For "proper" recoil prediction
+    /// </summary>
+    protected void UpdateAngles(TimeSpan curTime, GunComponent component, double angleIncrease = 0)
+    {
+        var timeSinceLastFire = (curTime - component.CurrentAngleLastUpdate).TotalSeconds;
+        // Two clamps, because first we need to compute how much CurrentAngle has decreased since the last time we fired
+        // If we ignore the first clamp, CurrentAngle may "go" into negatives, making the first shot after a while have less or even no inaccuracy
+        var oldTheta = MathHelper.Clamp(component.CurrentAngle - component.AngleDecayModified * timeSinceLastFire, component.MinAngleModified, component.MaxAngleModified);
+        var newTheta = MathHelper.Clamp(oldTheta + angleIncrease, component.MinAngleModified, component.MaxAngleModified.Theta);
+        component.CurrentAngle = new Angle(newTheta);
+        component.CurrentAngleLastUpdate = curTime;
+
+    }
+
+    /// <summary>
+    /// For "proper" recoil prediction
+    /// </summary>
+    /// <param name="curTime"></param>
+    /// <param name="component"></param>
+    protected void UpdateBonusAngles(TimeSpan curTime, GunComponent component, double angleIncrease = 0)
+    {
+        var timeSinceBonusUpdate = (curTime - component.BonusAngleLastUpdate).TotalSeconds;
+        component.BonusAngle = MathHelper.Clamp(component.BonusAngle + angleIncrease - component.BonusAngleDecayModified * timeSinceBonusUpdate, 0, component.MaxBonusAngleModified);
+        component.BonusAngleLastUpdate = curTime;
+    }
+	// WWDP EDIT END
 
     private void OnMapInit(Entity<GunComponent> gun, ref MapInitEvent args)
     {
@@ -433,6 +477,7 @@ public abstract partial class SharedGunSystem : EntitySystem
             }
         }
 
+        UpdateAngles(curTime, gun); // WWDP
         // Shoot confirmed - sounds also played here in case it's invalid (e.g. cartridge already spent).
         List<EntityUid>? projectiles = null;
         var userImpulse = false;
@@ -450,6 +495,7 @@ public abstract partial class SharedGunSystem : EntitySystem
                 CauseImpulse(fromCoordinates, toCoordinates.Value, user, userPhysics);
         }
 
+        UpdateAngles(curTime, gun, gun.AngleIncreaseModified); // WWDP
         DirtyField(gunUid, gun, nameof(GunComponent.BurstActivated));
         Dirty(gunUid, gun);
 
@@ -788,10 +834,10 @@ public abstract partial class SharedGunSystem : EntitySystem
 
     private Angle GetRecoilAngle(TimeSpan curTime, GunComponent component, Angle direction)
     {
-        var timeSinceLastFire = (curTime - component.LastFire).TotalSeconds;
+        var timeSinceLastFire = (curTime - component.CurrentAngleLastUpdate).TotalSeconds;
         var newTheta = MathHelper.Clamp(component.CurrentAngle.Theta + component.AngleIncreaseModified.Theta - component.AngleDecayModified.Theta * timeSinceLastFire, component.MinAngleModified.Theta, component.MaxAngleModified.Theta);
         component.CurrentAngle = new Angle(newTheta);
-        component.LastFire = component.NextFire;
+        component.CurrentAngleLastUpdate = component.NextFire;
 
         // Convert it so angle can go either side.
         long tick = Timing.CurTick.Value;
@@ -1100,6 +1146,8 @@ public abstract partial class SharedGunSystem : EntitySystem
             comp.AngleDecay,
             comp.MaxAngle,
             comp.MinAngle,
+            comp.BonusAngleDecay,	// WWDP EDIT
+            comp.MaxBonusAngle,		// WWDP EDIT
             comp.ShotsPerBurst,
             comp.FireRate,
             comp.ProjectileSpeed
@@ -1133,13 +1181,25 @@ public abstract partial class SharedGunSystem : EntitySystem
 
         if (!comp.MaxAngleModified.EqualsApprox(ev.MaxAngle))
         {
-            comp.MaxAngleModified = ev.MaxAngle;
+            comp.MaxAngleModified = ClampAngle(ev.MaxAngle); // WWDP EDIT
             DirtyField(gun, nameof(GunComponent.MaxAngleModified));
         }
 
         if (!comp.MinAngleModified.EqualsApprox(ev.MinAngle))
         {
-            comp.MinAngleModified = ev.MinAngle;
+            comp.MinAngleModified = ClampAngle(ev.MinAngle); // WWDP EDIT
+            DirtyField(gun, nameof(GunComponent.MinAngleModified));
+        }
+
+        if(!comp.BonusAngleDecayModified.EqualsApprox(ev.BonusAngleDecay))
+        {
+            comp.BonusAngleDecayModified = ev.BonusAngleDecay; // WWDP
+            DirtyField(gun, nameof(GunComponent.MinAngleModified));
+        }
+
+        if(!comp.MaxBonusAngleModified.EqualsApprox(ev.MaxBonusAngle))
+        {
+            comp.MaxBonusAngleModified = ClampAngle(ev.MaxBonusAngle); // WWDP
             DirtyField(gun, nameof(GunComponent.MinAngleModified));
         }
 
@@ -1160,6 +1220,8 @@ public abstract partial class SharedGunSystem : EntitySystem
             comp.ProjectileSpeedModified = ev.ProjectileSpeed;
             DirtyField(gun, nameof(GunComponent.ProjectileSpeedModified));
         }
+
+        Angle ClampAngle(Angle ang) => Math.Clamp(ang, 0, Math.Tau); // WWDP
     }
     public void SetFireRate(GunComponent component, float fireRate) => component.FireRate = fireRate;
     public void SetUseKey(GunComponent component, bool useKey) => component.UseKey = useKey;
